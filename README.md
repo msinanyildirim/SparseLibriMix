@@ -24,10 +24,12 @@ By default, it will generate 500 utterances for noisy and clean mixtures, for
 The total number of utterances is then 500 * 2 * 6 * 2 * 2 =  24000. 
 
 ---
-####Note
+### Note
 We provide directly the metadata for the purpose of generating the "official" test-set only dataset.  
 However we also provide metadata generation scripts, which can be used to generate an arbitrarily amount of data at least 
 in clean setting (as WHAM noises of sufficient length are unavailable for a properly sized training set). 
+We use Forced-Alignment to split the original LibriSpeech utterances using [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/).
+You can use your own alignments or use pre-generated ones from [here](https://zenodo.org/record/2619474#.XwiHMhF8Lg4).
 
 
 We plan to extend this in future to have a training set and a validation set derived from clean subset of LibriSpeech. 
