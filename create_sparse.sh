@@ -12,12 +12,12 @@ set -e
 mkdir -p $out_dir
 
 if [[ $stage -le 0 ]]; then
-    for fs in 8000 16000; do
+    for fs in 16000; do
       for n_speakers in 2 3; do
         for ovr_ratio in 0 $all_overlap; do
           echo "Making mixtures for ${n_speakers} speakers and overlap ${ovr_ratio}"
           python scripts/make_mixtures.py $metadata_dir/sparse_${n_speakers}_${ovr_ratio}/metadata.json \
-            $librispeech_subdir $out_dir/sparse_${n_speakers}_${ovr_ratio}/wav${fs} --noise_dir $noise_dir --rate $fs
+            $librispeech_subdir $out_dir/sparse_${n_speakers}_${ovr_ratio}/test --noise_dir $noise_dir --rate $fs
           done
       done
     done

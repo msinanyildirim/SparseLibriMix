@@ -90,8 +90,8 @@ for mix in tqdm(total_meta):
         else:
             tot_mixture += source_mix
 
-    os.makedirs(os.path.join(args.out_dir, "mix_clean"), exist_ok=True)
-    sf.write(os.path.join(args.out_dir, "mix_clean", filename + ".wav"), tot_mixture, args.rate)
+    # os.makedirs(os.path.join(args.out_dir, "mix_clean"), exist_ok=True)
+    # sf.write(os.path.join(args.out_dir, "mix_clean", filename + ".wav"), tot_mixture, args.rate)
 
     if args.noise_dir:
         s = "noise"
@@ -99,8 +99,8 @@ for mix in tqdm(total_meta):
         os.makedirs(os.path.join(args.out_dir, s), exist_ok=True)
         sf.write(os.path.join(args.out_dir, s, filename + ".wav"), source_mix, args.rate)
         tot_mixture += source_mix
-        os.makedirs(os.path.join(args.out_dir, "mix_noisy"), exist_ok=True)
-        sf.write(os.path.join(args.out_dir, "mix_noisy", filename + ".wav"), tot_mixture, args.rate)
+        os.makedirs(os.path.join(args.out_dir, "mix_both"), exist_ok=True)
+        sf.write(os.path.join(args.out_dir, "mix_both", filename + ".wav"), tot_mixture, args.rate)
 
 
 
