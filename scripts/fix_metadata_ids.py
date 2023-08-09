@@ -23,6 +23,7 @@ def main():
         assert c_mixture["mixture_name"].startswith("mix_"), "The original metadata files have the mixture names in the format mix_xxxxxx."
 
         spk_keys = [elem for elem in c_mixture.keys() if elem.startswith("s")]
+        spk_keys.sort()
         utt_id_list = [c_mixture[c_key][0]["utt_id"] for c_key in spk_keys]
 
         new_mix_id = "_".join(utt_id_list)

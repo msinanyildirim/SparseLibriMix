@@ -24,20 +24,21 @@ def main():
 
     total_rttm = []
     for c_mixture in total_metadata:
-        for c_key in c_mixture:
-            if c_key.startswith("s"):
-                c_subutts = c_mixture[c_key]
-                for sub_utt in c_subutts:
-                    c_spk_id = sub_utt["spk_id"]
-                    c_start = str(sub_utt["start"])
-                    c_dur = str(np.round(sub_utt["stop"] - sub_utt["start"], 3))
-                    c_mix_id = c_mixture["mixture_name"]
+        spk_keys = [c_key for c_key in c_mixture if c_key.startswith("s")]
+        spk_keys.sort()
+        for c_key in spk_keys:
+            c_subutts = c_mixture[c_key]
+            for sub_utt in c_subutts:
+                c_spk_id = sub_utt["spk_id"]
+                c_start = str(sub_utt["start"])
+                c_dur = str(np.round(sub_utt["stop"] - sub_utt["start"], 3))
+                c_mix_id = c_mixture["mixture_name"]
 
-                    c_rttm_entry = ["SPEAKER", c_mix_id, "1", c_start, c_dur, "<NA>", "<NA>", c_spk_id, "<NA>"]
-                    c_rttm_entry = "\t".join(c_rttm_entry)
-                    total_rttm.append(c_rttm_entry)
+                c_rttm_entry = ["SPEAKER", c_mix_id, "1", c_start, c_dur, "<NA>", "<NA>", c_spk_id, "<NA>"]
+                c_rttm_entry = "\t".join(c_rttm_entry)
+                total_rttm.append(c_rttm_entry)
 
-    total_rttm = "\n".join(total_rttm)
+    total_rttm = "\n".join(total_rttm) + "\n"
 
     parent_folder = os.path.dirname(args.output_file)
     os.makedirs(parent_folder, exist_ok=True)
